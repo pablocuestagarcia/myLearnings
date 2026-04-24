@@ -1,0 +1,13 @@
+[project]
+name = "python-db-clients"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "neo4j>=6.1.0",
+    "psycopg[binary]>=3.3.3",
+    "pydantic>=2.13.3",
+    "sqlmodel>=0.0.38",
+    "surrealdb>=2.0.0",
+]
