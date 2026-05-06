@@ -1,0 +1,14 @@
+version: '3'
+
+services:
+  neo4j:
+    image: neo4j:latest
+    container_name: neo4j_helloworld
+    ports:
+      - "7474:7474" # Interfaz web HTTP
+      - "7687:7687" # Puerto Bolt para conexiones
+    environment:
+      - NEO4J_AUTH=neo4j/helloworld123 # Credenciales por defecto (usuario/contraseña)
+    volumes:
+      - ./data:/data
+      - ./logs:/logs
