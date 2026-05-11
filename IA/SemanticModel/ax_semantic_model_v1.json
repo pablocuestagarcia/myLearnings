@@ -1,0 +1,30 @@
+{
+    "repository": "ghsd-fetcher",
+    "intent": [
+        "github_operational_analytics"
+    ],
+    "domains": [
+        "SCM_ANALYTICS"
+    ],
+    "capabilities": [
+        "github_metadata_extraction",
+        "rate_limit_management",
+        "distributed_ingestion"
+    ],
+    "architecture_patterns": [
+        "worker_pool",
+        "distributed_processing"
+    ],
+    "storage_models": [
+        "analytical_lakehouse"
+    ],
+    "operational_characteristics": [
+        "io_bound",
+        "high_concurrency"
+    ],
+    "technologies": [
+        "spark",
+        "delta_lake",
+        "adls"
+    ]
+}
