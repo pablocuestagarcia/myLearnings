@@ -1,0 +1,109 @@
+Take a moment to have a look around you. You’ll probably see your monitor from which you’re reading, your smart phone on the table,
+
+possibly a cup of coffee or tea, pen and paper, a few accessories and so on.
+
+In ontology jargon, these things are what we call instances or individuals.
+
+An instance is, basically, a single occurrence of something. For example, we could be talking about a couple of Harry Potter
+
+characters like Ron and Harry himself.
+
+We could talk about different locations such as countries which are instances. And when we are referring to specific languages, well, these
+
+are instances too.
+
+In order to create an understanding of how these things come together to mean something, we need to know what
+
+relationships exist between them, in the context of what we want to describe. So, let’s start drawing a few relationships.
+
+For example, Ron knows Harry. Harry was born in the UK. Harry speaks English as a language and also Parseltongue which, if
+
+you’ve watched the movie, you’d recognise this as the language Harry speaks with a snake – I think he only uses it once or
+
+something but anyway, we’re heading on a tangent here. Ok, then we can say English is the primary language of the UK and the USA.
+
+With these relations defined, we can now see a clearer description of the things we are trying to represent. These relations or associations
+
+are the glue between the things we describe in our domain.
+
+In ontology and more generally knowledge graph jargon, a thing tied to another thing via a relation is called a ‘triple’ or a ‘statement’.
+
+It’s basically the fundamental unit for describing and storing knowledge.
+
+Now, if we want to go even further in the definition of our relations, we could start defining some rules and constraints on how
+
+they are used, for example, we could say something like a person necessarily speaks at least one language.
+
+The whole idea behind ontology modelling is about knowing how to abstract these instances by understanding, for example, how they can
+
+be grouped together in a logical way, what they are composed of, how they change over time, and so on.
+
+In our case here, we can abstract, i.e. provide a higher-level description of our individuals this way, where we know we want to capture
+
+persons, countries and languages.
+
+In ontology modelling, these sets that may contain individuals are known as classes. Sometimes, you’ll also hear the terms concept,
+
+category, kind or type being used to refer to a class. A class is a description that accurately specifies the requirements for something to be
+
+a member of it.
+
+For example, if we said that all individuals capable of social interaction are persons, then this might mean that other primates could tick
+
+the box.
+
+But on the other hand, if we said that only individuals who have a social security number are persons, then our requirement for
+
+something to be a member of the class “Person” is noticeably different.
+
+Classes can be arranged in a tree-like structure called taxonomy and because we’re dealing with classes the taxonomy is
+
+sometimes coined as the class hierarchy.
+
+Probably last time you had a stab at building a quick taxonomy was when you created a folder structure.
+
+During the process, you looked at a bunch of folders and realised that it actually made sense to group them together under one
+
+master folder, cos they had something in common. In knowledge modelling, taxonomy works in a similar way, and it provides the
+
+backbone of an ontology.
+
+There’s also one very important understanding behind taxonomy. There’s a special bond, if you wish, between a class and its subclass
+
+which allows us to model what’s called ‘inheritance’.
+
+Inheritance allows a child class to be extended from its parent while inheriting the core attributes and behaviour of the parent class.
+
+For example, let’s say we’re building a knowledge model of the types of documents used in an enterprise, based on a
+
+departmental perspective. It would be logical to have, say, the concept “Company Document” as parent class with child classes
+
+“Finance Document”, “Legal Document”, etc. If we then declare that for something to be a “Company Document” it needs to have some
+
+content in it, this means that any of the child classes also inherits that declaration.
+
+The inheritance relation is said to be transitive, in other words, if the class “Finance Document” derives from “Company Document”
+
+and the class “Expense Document” derives from “Finance Document”, this means that “Expense Document” inherits the requirements
+
+of “Finance Document” as well as those of “Company Document”.
+
+Correct classification is, therefore, vital to the integrity of your knowledge models. For example, it would be problematic breaking
+
+down the class “Person” into “Employee”, “Student”, “Teacher”, etc., simply because as individuals we change roles during our lives.
+
+Also, one might be a student doing some part-time job and is, therefore, an employee at the same time. That would just create a confusing
+
+taxonomy.
+
+So, when designing your taxonomy, it’s always a good idea to think in terms of the classes and their individuals that can exist in the
+
+real-world, and how logically can things be abstracted and represented.
+
+In our example “Person” taxonomy, it would be more precise to simply have the class “Person” and have a separate class “Role” for
+
+actual roles, as instances, that a specific person instance is able to play.
+
+Lastly, everything from our classes, to relations, individuals and rules, basically everything that’s stated or assumed during the
+
+modelling of some subject matter is what we’ll refer to as the “domain of discourse” or “universe of discourse”.

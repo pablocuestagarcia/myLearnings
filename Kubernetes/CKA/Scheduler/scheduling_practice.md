@@ -1,141 +1,238 @@
-# Prácticas de Scheduling en Kubernetes (CKA)
+# Práctica de Scheduling para CKA
 
-Esta guía contiene ejercicios prácticos y teoría para que domines los conceptos de scheduling, fundamentales para el examen CKA.
+Este documento contiene ejercicios prácticos resueltos para cada uno de los conceptos de scheduling evaluados en el examen CKA. Te ayudará a prepararte para los escenarios prácticos del examen.
 
----
+## 1. Manual Scheduling
 
-## 1. Manual Scheduling (Asignación Manual)
+**Objetivo:** Crear un Pod y asignarlo manualmente a un nodo específico sin usar el scheduler de Kubernetes.
 
-Normalmente, el `kube-scheduler` decide en qué nodo se ejecuta un Pod. Sin embargo, puedes saltarte el scheduler asignando el Pod manualmente a un nodo usando el campo `nodeName`. 
+**Ejercicio:**
+1. Identifica un nodo en tu clúster (ej. `node01`).
+2. Crea un Pod llamado `manual-pod` usando la imagen `nginx:alpine`.
+3. Asígnalo forzosamente al nodo elegido sin utilizar el campo `nodeSelector`.
 
-Esto es muy útil en el examen si te piden desplegar un Pod en un clúster que no tiene el `kube-scheduler` funcionando.
-
-**Práctica:**
-Crea un archivo `manual-pod.yaml`:
-
+**Solución:**
 ```yaml
+# manual-pod.yaml
 apiVersion: v1
 kind: Pod
 metadata:
-  name: manual-scheduled-pod
+  name: manual-pod
 spec:
-  nodeName: cka-cluster-worker # <-- El Pod irá directamente a este nodo
+  nodeName: node01 # Asignación explícita saltando el scheduler
   containers:
   - name: nginx
-    image: nginx
+    image: nginx:alpine
 ```
-Aplica y verifica:
 ```bash
+# Aplicar el manifiesto y verificar en qué nodo se está ejecutando
 kubectl apply -f manual-pod.yaml
-kubectl get pod manual-scheduled-pod -o wide
+kubectl get pod manual-pod -o wide 
 ```
 
----
+## 2. Node Selector y Labels
 
-## 2. Labels y Selectors (nodeSelector)
+**Objetivo:** Etiquetar un nodo y usar `nodeSelector` para que un Pod solo se programe en nodos con esa etiqueta específica.
 
-Para dirigir Pods a nodos con características específicas (por ejemplo, nodos con discos SSD o GPUs), usamos etiquetas (labels) en los nodos y `nodeSelector` en los Pods.
+**Ejercicio:**
+1. Añade la etiqueta `hardware=gpu` a un nodo worker de tu clúster.
+2. Crea un Pod llamado `gpu-pod` con la imagen `redis` que solo se programe en nodos que contengan esa etiqueta.
 
-**Práctica:**
+**Solución:**
+```bash
+# 1. Etiquetar el nodo (reemplaza <node-name> por tu nodo)
+kubectl label nodes <node-name> hardware=gpu
 
-1. **Añade una etiqueta al nodo:**
-   ```bash
-   kubectl label nodes cka-cluster-worker2 disk=ssd
-   ```
+# Opcional: Verificar que el nodo tiene la etiqueta
+kubectl get nodes -l hardware=gpu
+```
 
-2. **Verifica la etiqueta:**
-   ```bash
-   kubectl get nodes --show-labels | grep disk=ssd
-   ```
-
-3. **Despliega un Pod que requiera esa etiqueta (`selector-pod.yaml`):**
-   ```yaml
-   apiVersion: v1
-   kind: Pod
-   metadata:
-     name: node-selector-pod
-   spec:
-     containers:
-     - name: nginx
-       image: nginx
-     nodeSelector:
-       disk: ssd # <-- El Pod solo se programará en nodos con esta etiqueta
-   ```
-   ```bash
-   kubectl apply -f selector-pod.yaml
-   ```
-
----
+```yaml
+# gpu-pod.yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: gpu-pod
+spec:
+  nodeSelector:
+    hardware: gpu
+  containers:
+  - name: redis
+    image: redis
+```
+```bash
+# 2. Crear el pod
+kubectl apply -f gpu-pod.yaml
+```
 
 ## 3. Taints y Tolerations
 
-Los **Taints** se aplican a los nodos para "repeler" Pods. Los **Tolerations** se aplican a los Pods para permitirles ser programados en nodos con Taints específicos.
-*Ojo: Un Toleration NO garantiza que el Pod vaya a ese nodo, solo le da "permiso" para ir.*
+**Objetivo:** Aislar un nodo mediante un taint (mancha) y permitir que solo Pods con la tolerancia adecuada puedan programarse en él.
 
-**Práctica:**
+**Ejercicio:**
+1. Aplica un taint a un nodo worker con la clave `env`, el valor `prod` y el efecto `NoSchedule`.
+2. Crea un Pod llamado `prod-pod` con la imagen `nginx` que tolere este taint explícitamente para poder ser programado en él.
 
-1. **Añade un Taint a un nodo:**
-   ```bash
-   kubectl taint nodes cka-cluster-worker color=blue:NoSchedule
-   ```
-   *(Cualquier Pod nuevo que no tolere `color=blue` no será programado en `cka-cluster-worker`)*
-
-2. **Crea un Pod con la Toleration adecuada (`toleration-pod.yaml`):**
-   ```yaml
-   apiVersion: v1
-   kind: Pod
-   metadata:
-     name: toleration-pod
-   spec:
-     containers:
-     - name: nginx
-       image: nginx
-     tolerations:
-     - key: "color"
-       operator: "Equal"
-       value: "blue"
-       effect: "NoSchedule"
-   ```
-   ```bash
-   kubectl apply -f toleration-pod.yaml
-   ```
-
-**Para eliminar el taint después de la práctica**, usa el mismo comando pero con un signo menos al final: 
-`kubectl taint nodes cka-cluster-worker color=blue:NoSchedule-`
-
----
-
-## 4. Custom Schedulers (Otros Schedulers)
-
-¿Existen otros schedulers en Kubernetes? **Sí**. Kubernetes permite ejecutar múltiples schedulers simultáneamente en el mismo clúster. 
-
-Esto es útil si tienes cargas de trabajo muy específicas (por ejemplo, Machine Learning, HPC, o procesos batch) que requieren algoritmos de decisión distintos al `kube-scheduler` por defecto.
-
-### ¿Cómo se despliegan?
-
-Un scheduler personalizado es simplemente otra aplicación (normalmente empaquetada en un Pod o Deployment). A menudo, es otra instancia del mismo binario de `kube-scheduler` pero configurado con un nombre diferente y reglas distintas.
-
-Para desplegarlo:
-1. Creas un `ServiceAccount`, `ClusterRole`, y `ClusterRoleBinding` para darle permisos al nuevo scheduler de leer nodos/pods y actualizar el estado de los Pods.
-2. Despliegas el scheduler (usualmente en el namespace `kube-system`) pasándole el argumento `--scheduler-name=my-custom-scheduler`.
-3. (Opcional) Configuras un archivo de configuración de KubeSchedulerConfiguration para definir perfiles específicos si estás extendiendo el scheduler nativo.
-
-### ¿Cómo se utilizan?
-
-Una vez desplegado tu scheduler secundario, los Pods seguirán usando el scheduler por defecto a menos que se lo indiques explícitamente en el `spec`.
-
-Para usarlo, simplemente añades el campo `schedulerName` al manifiesto del Pod:
+**Solución:**
+```bash
+# 1. Aplicar el Taint al nodo
+kubectl taint nodes <node-name> env=prod:NoSchedule
+```
 
 ```yaml
+# prod-pod.yaml
 apiVersion: v1
 kind: Pod
 metadata:
-  name: custom-scheduled-pod
+  name: prod-pod
 spec:
-  schedulerName: my-custom-scheduler # <-- Nombre de tu scheduler personalizado
+  containers:
+  - name: nginx
+    image: nginx
+  tolerations:
+  - key: "env"
+    operator: "Equal"
+    value: "prod"
+    effect: "NoSchedule"
+```
+```bash
+# 2. Crear el pod
+kubectl apply -f prod-pod.yaml
+```
+
+## 4. Node Affinity
+
+**Objetivo:** Usar `NodeAffinity` para programar un Pod indicando una preferencia (no un requisito estricto) hacia ciertos nodos.
+
+**Ejercicio:**
+1. Crea un Pod llamado `affinity-pod` con la imagen `httpd`.
+2. Configura una afinidad de nodo preferida (`preferredDuringSchedulingIgnoredDuringExecution`) para que el scheduler intente colocar el Pod en nodos con la etiqueta `disktype=ssd`.
+
+**Solución:**
+```yaml
+# affinity-pod.yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: affinity-pod
+spec:
+  affinity:
+    nodeAffinity:
+      preferredDuringSchedulingIgnoredDuringExecution:
+      - weight: 1
+        preference:
+          matchExpressions:
+          - key: disktype
+            operator: In
+            values:
+            - ssd
+  containers:
+  - name: httpd
+    image: httpd
+```
+```bash
+kubectl apply -f affinity-pod.yaml
+```
+
+## 5. Pod Anti-affinity
+
+**Objetivo:** Asegurar que dos o más réplicas de una aplicación no se programen en el mismo nodo para garantizar la alta disponibilidad (tolerancia a fallos de nodo).
+
+**Ejercicio:**
+1. Crea un Deployment llamado `web-app` con 3 réplicas de la imagen `nginx` y la etiqueta `app=web`.
+2. Configura `podAntiAffinity` estricta (`requiredDuringSchedulingIgnoredDuringExecution`) para que ninguna réplica de este Deployment comparta el mismo nodo (basado en el `topologyKey: "kubernetes.io/hostname"`).
+
+**Solución:**
+```yaml
+# web-app-anti-affinity.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: web-app
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: web
+  template:
+    metadata:
+      labels:
+        app: web
+    spec:
+      affinity:
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+          - labelSelector:
+              matchExpressions:
+              - key: app
+                operator: In
+                values:
+                - web
+            topologyKey: "kubernetes.io/hostname"
+      containers:
+      - name: nginx
+        image: nginx
+```
+```bash
+kubectl apply -f web-app-anti-affinity.yaml
+# Nota: Si tu clúster tiene menos de 3 nodos worker, algunas réplicas se quedarán en estado 'Pending'.
+```
+
+## 6. Resource Requests y Limits
+
+**Objetivo:** Definir cuántos recursos necesita un contenedor para iniciarse y cuál es su límite máximo de consumo.
+
+**Ejercicio:**
+1. Crea un Pod llamado `resource-pod` con la imagen `busybox` ejecutando el comando `sleep 3600`.
+2. Configura el contenedor para que solicite (`requests`) 100m de CPU y 128Mi de Memoria.
+3. Establece los límites (`limits`) del contenedor en 200m de CPU y 256Mi de Memoria.
+
+**Solución:**
+```yaml
+# resource-pod.yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: resource-pod
+spec:
+  containers:
+  - name: busybox
+    image: busybox
+    command: ["sleep", "3600"]
+    resources:
+      requests:
+        memory: "128Mi"
+        cpu: "100m"
+      limits:
+        memory: "256Mi"
+        cpu: "200m"
+```
+```bash
+kubectl apply -f resource-pod.yaml
+```
+
+## 7. Múltiples Schedulers
+
+**Objetivo:** Desplegar un Pod indicando que debe ser procesado por un scheduler secundario/personalizado.
+
+**Ejercicio:**
+1. Asume que en tu clúster existe un scheduler personalizado corriendo bajo el nombre `my-custom-scheduler`.
+2. Crea un Pod llamado `custom-sch-pod` con la imagen `nginx` que utilice explícitamente este nuevo scheduler.
+
+**Solución:**
+```yaml
+# custom-sch-pod.yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: custom-sch-pod
+spec:
+  schedulerName: my-custom-scheduler # Indicamos el scheduler a usar
   containers:
   - name: nginx
     image: nginx
 ```
-
-Si el `my-custom-scheduler` no está funcionando o configurado incorrectamente, el Pod se quedará en estado `Pending` indefinidamente, ya que el scheduler por defecto lo ignorará.
+```bash
+kubectl apply -f custom-sch-pod.yaml
+# Si el scheduler 'my-custom-scheduler' no está corriendo realmente, el pod se quedará 'Pending'.
+```

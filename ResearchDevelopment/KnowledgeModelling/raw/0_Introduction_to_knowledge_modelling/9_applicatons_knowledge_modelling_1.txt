@@ -1,0 +1,67 @@
+Now that you are more familiar with ontologies, have a good introductory grounding, have some idea about their
+
+importance and understand their philosophical and logic-based perspectives, let’s now run through the most common applications of
+
+knowledge modelling.
+
+Ontologies are exploited as a basis for sharing meaning or semantics and knowledge across human beings and systems.
+
+This applies to all ontologies out there.
+
+Ontologies promote the reuse of domain knowledge and improves the visibility of domain assumptions through explicit
+
+specification.
+
+There are also very strong links between ontologies, information systems and Artificial Intelligence.
+
+Firstly, ontologies are regarded as being platform agnostic. In other words, they are developed using methods that are almost
+
+independent of the technological and implementation constraints of information systems.
+
+This presents an opportunity to encourage interoperability across systems.
+
+Interoperability mustn’t be confused with integration. Whilst integration is about connecting systems to enable data and
+
+information to flow across them, interoperability, on the other hand, is about being able to share information across
+
+systems, without loss of context and meaning associated with that information.
+
+In the area of Information Systems and AI, there’re several applications of ontologies like the Semantic Web which is about connected
+
+web data with enriched meaning.
+
+There’s natural language processing. There’s intelligent search that utilises thesauri and knowledge organisation systems.
+
+There’s information structures for digital twin development e.g. digital twins of factories, jet engines and so on.
+
+There’s medical knowledge representation, repeatable software design and development, intelligent document retrieval, and several
+
+more.
+
+Ontologies are also used to analyse domain knowledge for problem solving and decision-making purposes.
+
+Adequately coded knowledge models and the basis they provide for scaling into structured knowledge bases – you’ll hear the term graph
+
+databases being used for that – so these knowledge bases are set up for querying, reasoning and knowledge retrieval purposes.
+
+A knowledge base or graph database is simply a repository whose underlying information structure is configured via knowledge models.
+
+That’s a key aspect of the so-called ‘knowledge graph’ which is intended to hold lots of interconnected individuals, as well as
+
+the supporting ontology structure.
+
+This way it becomes possible to reuse that knowledge to solve problems and make decisions.
+
+For example, let’s say you have a structured knowledge base containing service knowledge related to different brands of combination
+
+boilers.
+
+You could look up tips on how to troubleshoot your boiler, say if in the middle of winter, you weren’t getting hot water but were able to have
+
+central heating.
+
+One thing to notice here is that there’s a lot of cross-over and overlap between the different areas of application of knowledge modelling,
+
+and the discussion in this lecture is just a glimpse of some of the related applications.
+
+The scope for applying knowledge modelling is vast and that area of practical application is what’s referred to as “applied ontology”.

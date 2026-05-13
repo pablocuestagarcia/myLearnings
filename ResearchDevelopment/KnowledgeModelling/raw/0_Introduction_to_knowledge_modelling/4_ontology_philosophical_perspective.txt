@@ -1,0 +1,41 @@
+La comprensión expuesta hasta ahora se ha producido en gran medida en el contexto de los aspectos técnicos de las ontologías y la modelización del conocimiento.
+
+Sería incompleto por mi parte adentrarme más en nuestra discusión sin pasar por un debate sobre las
+
+ontologías desde una perspectiva filosófica, ya que hay un elemento mucho más profundo en la ontología.
+
+La palabra "ontología" procede del griego y significa estudio del ser y la existencia.
+
+La ontología tradicional se ocupa de las cuestiones fundamentales relacionadas con la existencia de entidades y
+
+de cómo pueden agruparse y describirse con sentido basándose, por ejemplo, en sus similitudes y diferencias.
+
+La ontología, desde esa perspectiva, está estrechamente vinculada a la metafísica, que a su vez es una rama importante de la filosofía.
+
+He aquí algunos ejemplos de las cuestiones centrales para las que la ontología, como disciplina
+
+filosófica, busca respuestas: ¿Cuál es el sentido de la existencia? ¿Qué significa que algo exista?
+
+¿Qué es una entidad? ¿Cómo calificamos o cuantificamos lo que algo es? ¿Cuáles son las
+
+características y rasgos de los entes? ¿Cuáles son las entidades y propiedades más fundamentales que
+
+pueden ayudarnos a describir el mundo en el que vivimos y experimentamos? Desde ese punto
+
+de vista, la ontología consiste en diseccionar y abstraer el mundo para encontrar algún tipo
+
+de orden o estructura fundamental en las cosas que vemos y experimentamos a nuestro alrededor.
+
+En filosofía, existen distintos tipos de ontologías en función de su grado de abstracción y aplicación.
+
+Las ontologías que describen los conceptos básicos comunes a todos los dominios del conocimiento se
+
+conocen como ontologías fundacionales, también llamadas ontologías superiores si damos la vuelta a este diagrama.
+
+También se aplican distintos niveles de abstracción a las ontologías técnicas, algo que veremos en una próxima conferencia.
+
+Toda esta perspectiva filosófica sobre la ontología es enorme, y tengo que detenerme en algún punto.
+
+Así que lo dejaremos en este punto. Lo que me gustaría que te llevaras de esta conferencia es la apreciación de que lo que estás estudiando
+
+en este curso, que está relacionado con el aspecto técnico de la modelización del conocimiento, encaja de hecho en un ámbito de comprensión mucho más amplio.

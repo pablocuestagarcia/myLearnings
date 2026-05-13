@@ -1,0 +1,52 @@
+There are two main ways of conveying the structure of a knowledge model.
+
+The first is through visual representation, while the second is through coded representation.
+
+So far, we’ve mostly seen a few snippets of how to visually represent our models, for example, as in this diagram where we used
+
+specific shapes and arrows to express what we’re modelling.
+
+While similar visual models are perfectly suited for human interpretation, this sort of representation doesn’t quite cut it for
+
+computers.
+
+And the reason is simply because visual representations are not encoded in a particularly formal and well-defined language
+
+that computers are able to understand.
+
+Knowledge models that are less formally and less rigorously encoded are said to be ‘lightweight’ ontologies and that includes
+
+ontologies expressed through graphical methods because they make a fundamental assumption; the assumption that the
+
+semantics of our models can readily be understood.
+
+In other words, lightweight ontologies assume that the meaning of the graphical constructs and the entities defined in our universe of
+
+discourse can be understood unambiguously.
+
+Despite this assumption, visual knowledge models work really well for sharing among human beings and have several other benefits
+
+which we’ll be visiting later on.
+
+On the other hand, we have the coded approach to representing ontologies and that’s necessary for us to try make our models mean
+
+something to computers.
+
+Luckily, we don’t have to start from scratch defining a language to encode our knowledge models because past and current initiatives
+
+have developed a range of recommendations for various formal logic-based frameworks and languages for us to choose from.
+
+Some examples of well-known knowledge representation languages are the Knowledge Interchange Format (KIF)
+
+developed in the early 90s, Common Logic (CL), which is also an International Standard, and the Web Ontology Language –
+
+abbreviated to OWL – developed by the World Wide Web Consortium (W3C).
+
+OWL is probably, at present, the most widely used ontology representation language. In this course, you won’t be expected to
+
+manually code your ontologies although this can be achieved if you’re well-versed with the syntax and the semantics of the language.
+
+So, in this course, you’ll learn graphical methods for knowledge modelling and also how to use a Graphical User Interface
+
+application to build your knowledge models coded in the Web Ontology Language (OWL).
+

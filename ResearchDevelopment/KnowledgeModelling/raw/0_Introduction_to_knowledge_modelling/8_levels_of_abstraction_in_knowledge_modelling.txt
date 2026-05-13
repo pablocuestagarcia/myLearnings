@@ -1,0 +1,117 @@
+Back in our lecture on “ontology from a philosophical perspective” we briefly touched on what it means to have a conceptualisation
+
+of the very basic and fundamental concepts that are common to all knowledge domains.
+
+We saw that these ontologies are called foundational or upper ontologies.
+
+When it comes to ontologies as formal models, different levels of specificity exist from the very generic, to the specific.
+
+In other words, ontologies range in abstraction, in this case the coverage of subject matter they provide.
+
+They can define very general concepts that constitute the foundation for the representation of all knowledge domains.
+
+They can also define concepts that are relevant to very specific domains as well.
+
+Arguably, there are different ways that we could go about discussing what these levels of abstraction are, but I tend to find it really useful
+
+to view ontologies based on the following split.
+
+Foundational ontologies capture the most fundamental concepts of all – things like objects that can endure with time and events
+
+that can span over time.
+
+Other common foundational ideas are things like concrete objects, which can only exist at a single location at a time and as one whole and
+
+abstract things, which do not exist at a single place and as a whole.
+
+The proper construction of foundational ontologies takes time and requires a lot of effort and collaboration across subject matter
+
+specialists.
+
+These types of ontologies tend to be the output from long-term academic projects and other significant initiatives driven by,
+
+for example, the International Standards Organisation (ISO).
+
+Middle level ontologies are more focused than foundational ontologies and are to some extent domain oriented.
+
+However, they are still generic enough to be applicable across many areas.
+
+For example, consider an ontology that provides structures for describing how events occur in time. That ontology can be reused
+
+across any domain that needs to represent events. Our ontology of event representation is not
+
+foundational per se, since each and every kind of fundamental concept is not meant to be defined in that ontology.
+
+However, we’re able to reuse our ontology of event representation and exploit its formal basis to build much more domain-focused,
+
+user-level ontologies. For example, in the case of our ontology of event representation it could be applied to describe events in project
+
+planning, ordering, celebratory events, and so on.
+
+The most specific knowledge models that can be created sit at the user level
+
+and these ontologies are as domain-specific as they can get.
+
+User level ontologies are developed exclusively for their direct intended context. For example, you can have a project planning
+
+ontology that’s specific to your department, which would be an agreed view of how, let’s say, your software development projects
+
+unfold within your team. User level ontologies work well for specific enterprises, groups, information systems,
+
+application tools, and so on.
+
+Designing ontologies doesn’t require you to directly use the whole stack of abstraction levels in order to create your own user level
+
+models. It all depends on what your needs are. It’s always a good thing to have an understanding of how the entities that you
+
+define in your user ontologies relate to those coming from the preceding levels of abstraction.
+
+This way, you’re able to build ontologies that conform better to the core notions of the foundational and middle levels.
+
+Typically though, the foundational and middle level ontologies are helpful for when you have several user ontologies that you want to bring
+
+together and merge into one cohesive lot.
+
+There are loads of ontologies that have been published and are readily available for you to reuse. This means that, in several cases, you
+
+don’t actually need to develop a knowledge model completely from scratch.
+
+You can refer to and reuse various bits and pieces from any existing ontologies, as you see fit.
+
+Here are some examples of various published ontologies that fit into the different levels of abstraction we’ve just discussed.
+
+At the foundational level, we have, for example, the Suggested Upper Merged Ontology a.k.a. SUMO, used for research and
+
+applications in search, linguistics and reasoning.
+
+There’s the Descriptive Ontology for Linguistic and Cognitive Engineering a.k.a. DOLCE, which captures notions central to natural
+
+language and human common-sense.
+
+And there’s ‘gist’, a modular upper ontology developed by the company Semantic Arts.
+
+There’s also the Basic Formal Ontology or BFO which is a well-documented upper ontology.
+
+Then we have the middle level ontologies, where we see examples like the Process Specification Language or PSL, and PSL is
+
+used for the representation of discrete events chiefly in production engineering.
+
+There’s The Zachman Framework which is considered a generic enterprise ontology and more a visual ontology rather than a formally
+
+defined one.
+
+We also can have other middle level models like The Music Ontology.
+
+At the user level, well, we can have anything that’s domain specific – you name it; you can have models that capture jet engine
+
+interactions, models for patent classification, ontologies for describing different kinds of merchandise, and heaps more.
+
+While many ontologies out there fit neatly in our foundational, middle and user levels, you may come across ontologies that span let’s
+
+say both the foundational and middle levels. So, something to remember then is that it isn’t so much about bucketing your knowledge
+
+models into these three specific levels.
+
+You may choose to and that’s totally fine. What matters though, is being able to correctly develop knowledge models that meet your
+
+very specific requirements.

@@ -1,0 +1,83 @@
+La gestión del conocimiento y su eficacia se consideran hoy un
+
+poderoso activo para seguir siendo competitivo en casi cualquier mercado.
+
+La gestión del conocimiento es una disciplina muy amplia, pero, en cierto modo, se reduce a cómo las personas, los procesos y la
+
+tecnología se unen para ofrecer la información adecuada, en el momento y lugar adecuados, a la audiencia correcta y en el formato adecuado.
+
+La gestión del conocimiento funciona de tal manera que transforma tanto el conocimiento individual como el colectivo para mejorar su reutilización.
+
+También se trata de convertir los datos y la información, que proceden de todo
+
+tipo de fuentes, en conocimiento, e interconectar a las personas con ese conocimiento.
+
+Existen dos tipos principales de conocimiento: el conocimiento explícito y el conocimiento tácito.
+
+El conocimiento explícito suele ser de naturaleza formal y sistemática. Esta forma de conocimiento se considera fácil de identificar, almacenar y compartir.
+
+Es el tipo de conocimiento al que accedemos en fuentes como documentos, imágenes, contenidos audiovisuales, etc.
+
+Por ejemplo, puedes escribir la frase de búsqueda "gestión del conocimiento" en Wikipedia
+
+y el contenido que recuperas y lees es conocimiento de forma explícita.
+
+Lo fundamental del conocimiento explícito es que puede expresarse externamente y consumirse con bastante facilidad.
+
+El segundo tipo de conocimiento es lo que llamamos conocimiento tácito, que se
+
+considera en gran medida conocimiento adquirido a partir de la experiencia personal.
+
+Como el conocimiento tácito varía de un individuo a otro y es una combinación de experiencia e intuición,
+
+es muy difícil expresar externamente el conocimiento tácito; bueno, difícil, pero no necesariamente imposible. Lo que nos
+
+lleva a un tercer tipo de conocimiento llamado conocimiento implícito, que no es ni explícito ni tácito.
+
+¿Qué quiero decir con esto? El conocimiento implícito vive en nuestras cabezas, pero
+
+a diferencia del conocimiento tácito, que es difícil de captar externamente, en
+
+realidad somos capaces de expresar externamente el conocimiento implícito si es necesario.
+
+Por ejemplo, podría entrevistar a un experto en software de producción musical y llevar a cabo un proceso de captación de los conocimientos de esa persona
+
+sobre los métodos para masterizar una pista. Los conceptos que exploraremos en este curso funcionan muy bien tanto para el conocimiento explícito como para el implícito.
+
+El conocimiento aplicado tiene un ciclo de vida propio, igual que un producto se crea, se utiliza y se mantiene. Hay
+
+muchos trabajos que explican con detalle el ciclo de vida del conocimiento, así que no me detendré demasiado en este tema.
+
+Aquí me limitaré a destacar los puntos principales.
+
+Me gusta pensar que el ciclo de vida del conocimiento tiene dos dimensiones. En primer lugar, hay una capa de innovación que capta
+
+el ciclo de vida de los nuevos conocimientos a medida que se desarrollan. En esa capa, primero se crea el nuevo conocimiento.
+
+Por ejemplo, supongamos que estamos desarrollando un hervidor que va a revolucionar la forma de hervir agua en
+
+casa. El conocimiento es completamente nuevo y va tomando forma poco a poco. A continuación, esos conocimientos
+
+se plasman en varios modelos, sistemas y procesos para llevar nuestro hervidor a la producción y comercializarlo.
+
+Nuestra nueva tetera llega entonces al mercado, donde su conocimiento asociado se difunde finalmente, y el bucle se cierra.
+
+Por otro lado, tenemos la capa de compartición, que se ocupa de los conocimientos ya
+
+existentes. Su ciclo de vida comienza con la identificación y captura del conocimiento en cuestión.
+
+A continuación, el conocimiento se organiza, es decir, se estructura y almacena para su consumo.
+
+A continuación, es posible difundir ese conocimiento entre individuos, grupos y sistemas. El conocimiento
+
+se utiliza para resolver problemas y tomar decisiones, y el ciclo vuelve a empezar.
+
+Existe una estrecha relación entre las capas de innovación y de intercambio, por ejemplo, a través de la retroalimentación de conocimientos.
+
+Por ejemplo, en el caso de nuestra tetera, el conocimiento histórico de cómo fabricábamos teteras en el pasado
+
+podría utilizarse para mejorar la forma en que producimos nuestra nueva tetera, basándonos en las lecciones aprendidas.
+
+La gestión del conocimiento se sitúa en el centro del ciclo de vida del conocimiento. Por tanto, en
+
+nuestro diagrama son fundamentales los pilares de la gestión del conocimiento: las personas, los procesos y la tecnología.

@@ -1,0 +1,77 @@
+Estoy seguro de que la mayoría de nosotros hemos creado mapas mentales en algún momento de nuestras vidas.
+
+Por ahora, veamos cuáles son los componentes de un mapa mental y, a modo de ejemplo, tenemos aquí
+
+un mapa mental de algunos de los conceptos e ideas que giran en torno al conocimiento como tema.
+
+Un mapa mental consiste en enumerar conceptos en torno a un tema central, y el
+
+mapa es en realidad nuestro modelo para compartir las nociones pertinentes a ese tema.
+
+El diagrama es efectivamente un método para aclarar las cosas y compartir potencialmente esa interpretación con otras personas.
+
+Ahora, imaginemos que recomponemos nuestro mapa mental, pero esta vez prestando especial atención a comprender cómo están ordenados los
+
+conceptos y qué relaciones existen entre ellos. Lo que obtenemos es una descripción más significativa de nuestro tema.
+
+Si tomamos este diagrama recompuesto y lo convertimos en algo interpretable tanto por humanos como
+
+por máquinas, podremos conseguir muchas más cosas: por ejemplo, mejores formas de compartir significados entre
+
+humanos, mejores formas de compartir significados entre máquinas si somos capaces de codificar nuestros modelos.
+
+También podemos conseguir interacciones mucho más sólidas entre personas y sistemas, mejores formas de trabajar con el conocimiento, etc.
+
+En pocas palabras, ese es el poder de la modelización del conocimiento.
+
+Dicho en términos sencillos, un modelo de conocimiento, al que también nos referiremos como "ontología", es algo así como un mapa
+
+mental, pero con la suficiente estructura añadida y una autodescripción que permite aclarar el significado de lo que estemos representando.
+
+Un modelo de conocimiento, o una ontología, puede ser una representación visual - visual para que nosotros,
+
+los seres humanos, la entendamos y compartamos; una representación codificada para que la interprete una máquina -
+
+o ambas cosas, dependiendo de las herramientas y métodos que utilicemos para crear y visualizar nuestros modelos.
+
+Todos sabemos que una imagen vale más que mil palabras, pero me gustaría ampliar esa idea para decir que
+
+un modelo vale mucho más, y eso se aplica también a un modelo de conocimiento, que nos permite
+
+captar formalmente -es decir, de forma interpretable por una máquina- la esencia y la configuración de algún tema.
+
+He aquí algunos ejemplos de ontologías en las que he tenido la oportunidad de trabajar en el pasado.
+
+Si te preguntas qué son esos círculos, flechas y cosas parecidas a
+
+árboles, no te preocupes, porque pronto sabrás cómo crear los tuyos.
+
+En cuanto a una definición académica estándar de lo que es una ontología, en realidad no hay una única que podamos utilizar
+
+en todos los casos, y eso se debe a las diferentes perspectivas y ámbitos de aplicación de la modelización del conocimiento.
+
+Sin embargo, probablemente la definición más citada en la literatura existente es la de Tom Gruber, quien en 1993, en
+
+su artículo titulado "A Translation Approach to Portable Ontologies", define una ontología como "una especificación explícita de una conceptualización".
+
+Esta definición fue ampliada posteriormente por Studer y sus colegas, que en 1997, en su artículo sobre
+
+ingeniería del conocimiento, definieron una ontología como "una especificación formal y explícita de una conceptualización compartida".
+
+Alucinante, ¿verdad? Bueno, eso es lo que pensé cuando empecé a aprender sobre ontologías.
+
+Pero, de hecho, esa definición no es compleja, sólo concisa.
+
+Lo que significa es que una ontología es una representación precisa y legible por una máquina de un tema determinado, que se deriva del consenso.
+
+Para nosotros, sin embargo, consideraremos una ontología como un "plano" acordado para representar
+
+el conocimiento que puede diseñarse para ser interpretado por humanos y máquinas.
+
+Al igual que un plano se puede utilizar varias veces para construir diferentes edificios,
+
+un modelo de conocimiento se puede aplicar para satisfacer diversas necesidades, como la captura
+
+de significado, es decir, la semántica, la representación de dominios, el diseño de sistemas,
+
+la creación de vocabularios controlados y tesauros aumentados, el modelado empresarial y muchas más.

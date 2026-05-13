@@ -1,0 +1,85 @@
+There is a range of criteria we should consider and think of when it comes to choosing the right knowledge representation formalism for
+
+encoding knowledge models, in other words, the representation language itself.
+
+Our choice is likely to be influenced by a number of requirements and the primary ones to consider are:
+
+the expressivity of the language, the semantics of the language; and the level of mathematical rigour provided by the language.
+
+The expressivity of a language is a measure of the range of the constructs that it provides to describe the components of a knowledge
+
+model correctly and explicitly.
+
+For example, if our language only defines the constructs for classes and class hierarchies as taxonomies, and no further support is provided
+
+for other kinds of relations, then we obviously have certain limitations in what we’d like to express and, therefore, we’ll be missing out on
+
+a whole range of other useful kinds of associations.
+
+The semantics of a language, on the other hand, relate to the degree of clarity of meaning in its specification.
+
+For example, let’s say we’re trying to model the notion of “precedence” in using some knowledge representation language.
+
+Does it mean that we can only declare that one distinct event is able to precede a single event at any given time?
+
+Or does it mean that we can have multiple other events that can precede a single event?
+
+Or perhaps something else can happen concurrently?
+
+The clarity of intended meaning in the specification of a knowledge representation language is, therefore, another important
+
+consideration when choosing a knowledge representation language for modelling purposes.
+
+The third important factor lies in the level of mathematical rigour of encoding imparted by a knowledge representation language.
+
+Mathematical rigour relates to the degree of satisfiability and coherence of a representation, i.e., the integrity and
+
+soundness within an ontology.
+
+In mathematical logic, satisfiability is when some statement we’ve declared in our universe of discourse has an interpretation
+
+that makes it true.
+
+Coherence, on the other hand, can be achieved by ensuring some consistency in the way that the entities have been encoded within
+
+the universe of discourse.
+
+The level of mathematical rigour of an ontology depends on the semantics of the chosen knowledge representation language.
+
+Additionally, other factors can also play a part in how mathematically rigorous a knowledge model is, for example, the skill level of the
+
+person doing the modelling work, as well as the features provided in the supporting tools.
+
+Knowledge models that are encoded in a mathematically rigorous way are said to be ‘heavyweight’ ontologies.
+
+Unlike lightweight ontologies, which are less formal and assume that the ontology entities can be readily understood, heavyweight
+
+ontologies, on the other hand, benefit from all the structures of lightweight ontologies. Plus, you get the ability to encode formal axioms
+
+and rules and these additional structures help to clarify the intended meaning of the terms in our knowledge models.
+
+There are several representation languages for data, information and knowledge some more formal and expressive than others.
+
+There are languages for building data models and that have been around for a while, like entity-relationship diagrams and EXPRESS-G.
+
+Others are object based like UML and Frames which are used in wider information modelling as a result of various domain perspectives that
+
+can be captured.
+
+And then there are knowledge representation languages expressed in formal logic like the Resource Description Framework (RDF) and
+
+RDF Schema, as well as the Web Ontology Language (OWL), which are Description Logic (DL) based.
+
+And we also have other knowledge representation languages like Common Logic (CL) and its interchange format, and the
+
+Knowledge Interchange Format (KIF), which are First Order Logic based.
+
+The illustration identified here gives us an idea of the spread of these well-known representation languages in terms of their
+
+degree of expressivity and formality.
+
+Specifically for heavyweight ontology representation, in this course, we’ll be using the Web Ontology Language.
+
+OWL readily supports the modelling of classes, class hierarchies, relations, axioms and individuals.
+
+Furthermore, OWL is also an open standard, it benefits from very good tool support, as well as an active community of users.

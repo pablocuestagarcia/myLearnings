@@ -1,0 +1,55 @@
+Domain knowledge representation
+Ontologies serve as explicit domain models, carrying structure, meaning and reusable information. They can be queried to answer business questions. They enable zooming in/out of complexity and can unify different enterprise perspectives.
+
+
+Augmented business process modelling
+Business process descriptions can be richly and explicitly captured as ontologies and knowledge graphs. They can be tailored to fit exact data representation requirements and the augmented business process models can be queried.
+
+
+Business rule representation
+Ontologies support the explicit capture of business rules, aiding to overcome challenges that arise as a result of the hard-coding of these rules in applications. This helps accelerate discovery phases and impact assessments, among others.
+
+
+Semantic data catalogs
+Ontology structures support the definition, alignment and curation of concepts and terms. The meaning of concepts can be encoded by virtue of the things they relate to. This promotes shared understanding which feeds into good data governance practice.
+
+
+Versatile topological visualisations
+Since ontologies help absorb complexity and because their development is largely agile in nature, they offer adaptable approaches for visualising organograms, business object topologies, data lineage, rich network views, etc.
+
+
+Enterprise knowledge graphs
+Ontologies are a great way of defining the blueprint for enterprise knowledge graphs. These are extremely powerful assets for unifying enterprise perspectives and bringing machine-interpretable meaning to all sorts of enterprise data.
+
+
+Ontology-driven NLP
+Natural Language Processing (NLP) is a branch of computer science and AI that actively makes use of ontologies. These models can be applied to impart context for text mining, concept extraction and term relationship discovery.
+
+
+Linked data
+Ontologies are an integral part of Linked Open Data (LOD) initiatives. They provide the foundation for describing information structures for remarkably extensive datasets. DBpedia is a great example of linked data using the power of ontologies and knowledge graphs.
+
+
+Reference models
+Ontologies can be utilised as reference models for embodying expert knowledge shared across a community such that they can be adopted in the creation of standards, for improving the interpretation of the entities across human beings and machines, and many more.
+
+
+Semantic interoperability
+Ontologies can be modelled for use cases that require the seamless exchange of self-describing information across heterogenous applications. Rigour in semantic modelling can be obtained, coupled with metadata annotations and data model documentation.
+
+
+Semantic search
+Ontologies serve as the ‘compass’ for inferring context from concept relationships. Powerful search functionalities can be developed from the context-rich structures of taxonomies, thesauri and ontologies to facilitate information retrieval based on user intent.
+
+
+Visual teaching assets
+Interactive ontology visuals can be built to lay out the concepts and relations that describe a particular domain of knowledge and because ontologies can capture context, this can foster a richer and much more targeted learning experience.
+
+
+Complexity management
+Ontologies can help distill complexity by accurately representing real-world objects and events as well as their intrinsic relationships. This is useful for making sense of extremely complex eco-systems like supply chains, product lifecycles, financial services, etc. and for developing digital twins.
+
+
+Data management
+Formal ontologies provide wide-ranging applications in data management from accelerating data mesh strategy implementation, data fabric description, intelligent policy impact assessment, intelligent root cause analysis and more.
+
