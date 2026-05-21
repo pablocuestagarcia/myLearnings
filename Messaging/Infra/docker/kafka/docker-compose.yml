@@ -1,0 +1,80 @@
+services:
+  kafka:
+    image: confluentinc/cp-kafka:7.7.1
+    container_name: kafka
+    hostname: kafka
+    ports:
+      - "9092:9092"   # PLAINTEXT (host)  — uso desde el host via localhost:9092 NO recomendado, usar 9094
+      - "9094:9094"   # EXTERNAL          — para clientes en tu host
+    environment:
+      # --- KRaft (sin Zookeeper) ---
+      KAFKA_NODE_ID: 1
+      KAFKA_PROCESS_ROLES: "controller,broker"
+      KAFKA_CONTROLLER_QUORUM_VOTERS: "1@kafka:9093"
+      CLUSTER_ID: "MkU3OEVBNTcwNTJENDM2Qg"   # UUID fijo para dev; debe ser estable
+
+      # --- Listeners ---
+      KAFKA_LISTENERS: "PLAINTEXT://0.0.0.0:9092,CONTROLLER://0.0.0.0:9093,EXTERNAL://0.0.0.0:9094"
+      KAFKA_ADVERTISED_LISTENERS: "PLAINTEXT://kafka:9092,EXTERNAL://localhost:9094"
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: "CONTROLLER:PLAINTEXT,PLAINTEXT:PLAINTEXT,EXTERNAL:PLAINTEXT"
+      KAFKA_CONTROLLER_LISTENER_NAMES: "CONTROLLER"
+      KAFKA_INTER_BROKER_LISTENER_NAME: "PLAINTEXT"
+
+      # --- Topología single-node (dev) ---
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+      KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1
+      KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 1
+      KAFKA_GROUP_INITIAL_REBALANCE_DELAY_MS: 0
+      KAFKA_AUTO_CREATE_TOPICS_ENABLE: "true"
+      KAFKA_NUM_PARTITIONS: 3
+
+      # --- JMX (opcional, expuesto por si queremos engancharle un JMX exporter) ---
+      KAFKA_JMX_PORT: 9101
+      KAFKA_JMX_HOSTNAME: kafka
+    volumes:
+      - kafka_data:/var/lib/kafka/data
+    healthcheck:
+      test: ["CMD-SHELL", "kafka-topics --bootstrap-server localhost:9092 --list >/dev/null 2>&1"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 30s
+    networks:
+      - messaging-net
+
+  console:
+    image: docker.redpanda.com/redpandadata/console:v2.7.2
+    container_name: kafka-console
+    depends_on:
+      kafka:
+        condition: service_healthy
+    ports:
+      - "8080:8080"
+    environment:
+      KAFKA_BROKERS: "kafka:9092"
+      CONFIG_FILEPATH: ""        # usamos solo variables de entorno
+    networks:
+      - messaging-net
+
+  kminion:
+    image: docker.redpanda.com/redpandadata/kminion:v2.2.12
+    container_name: kafka-kminion
+    depends_on:
+      kafka:
+        condition: service_healthy
+    ports:
+      - "8081:8080"
+    environment:
+      KAFKA_BROKERS: "kafka:9092"
+      # Habilita medición de latencia end-to-end (produce + consume en topic interno)
+      MINION_ENDTOEND_ENABLED: "true"
+      MINION_ENDTOEND_TOPICMANAGEMENT_REPLICATIONFACTOR: 1
+    networks:
+      - messaging-net
+
+volumes:
+  kafka_data:
+
+networks:
+  messaging-net:
+    external: true
