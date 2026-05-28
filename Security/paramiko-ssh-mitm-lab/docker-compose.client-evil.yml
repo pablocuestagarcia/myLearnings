@@ -1,0 +1,6 @@
+# Override: 'sokrates-vm' resuelve al ATACANTE. Equivalente a DNS/ARP
+# envenenado, un proxy hostil, un host comprometido en la ruta, etc.
+services:
+  client:
+    extra_hosts:
+      - "sokrates-vm:172.28.0.20"

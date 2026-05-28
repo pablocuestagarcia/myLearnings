@@ -1,0 +1,42 @@
+# Lab de MITM contra paramiko.AutoAddPolicy().
+#
+# La red lab-net tiene IPs fijas para los dos servidores. El cliente NO
+# tiene extra_hosts por defecto: se las inyectamos al ejecutarlo con
+# uno u otro fichero de override, asi simulamos un DNS/ARP envenenado
+# que hace que 'sokrates-vm' resuelva al legitimo o al atacante.
+
+services:
+  legit-server:
+    build: ./legit-server
+    container_name: legit-server
+    networks:
+      lab-net:
+        ipv4_address: 172.28.0.10
+    restart: unless-stopped
+
+  evil-server:
+    build: ./evil-server
+    container_name: evil-server
+    networks:
+      lab-net:
+        ipv4_address: 172.28.0.20
+    restart: unless-stopped
+
+  client:
+    build: ./client
+    image: paramiko-mitm-lab-client
+    # sin container_name fijo: lo lanzamos varias veces con 'compose run'
+    volumes:
+      - ./:/work
+    working_dir: /work
+    networks:
+      - lab-net
+    # extra_hosts NO va aqui: se inyecta via override (ver scripts/)
+    command: ["sleep", "infinity"]
+
+networks:
+  lab-net:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.28.0.0/24

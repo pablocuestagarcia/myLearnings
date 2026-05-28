@@ -1,0 +1,99 @@
+# Consumer NATS JetStream en Python.
+# El código va en un ConfigMap para no tener que construir una imagen
+# propia. El contenedor python:3.11-slim instala nats-py en el arranque.
+#
+# Cada mensaje tarda 2 segundos en procesarse (simulamos trabajo pesado),
+# de modo que con un solo pod los mensajes se acumulan y KEDA escala.
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: nats-consumer-code
+  namespace: nats
+data:
+  consumer.py: |
+    import asyncio
+    import os
+    import signal
+    import nats
+    from nats.errors import TimeoutError as NatsTimeout
+
+    NATS_URL = os.environ.get("NATS_URL", "nats://nats.nats.svc.cluster.local:4222")
+    STREAM = "ORDERS"
+    DURABLE = "workers"
+    PROCESS_SECONDS = float(os.environ.get("PROCESS_SECONDS", "2"))
+
+    async def main():
+        nc = await nats.connect(NATS_URL, name=f"consumer-{os.environ.get('HOSTNAME','?')}")
+        js = nc.jetstream()
+        psub = await js.pull_subscribe(
+            subject="orders.>",
+            durable=DURABLE,
+            stream=STREAM,
+        )
+        print(f"[{os.environ.get('HOSTNAME')}] subscrito al consumer {DURABLE}", flush=True)
+
+        stop = asyncio.Event()
+        for sig in (signal.SIGINT, signal.SIGTERM):
+            asyncio.get_running_loop().add_signal_handler(sig, stop.set)
+
+        while not stop.is_set():
+            try:
+                msgs = await psub.fetch(batch=1, timeout=5)
+                for msg in msgs:
+                    print(f"  proc: {msg.data.decode()}", flush=True)
+                    await asyncio.sleep(PROCESS_SECONDS)
+                    await msg.ack()
+            except NatsTimeout:
+                # no había mensajes; loop
+                continue
+
+        await nc.drain()
+
+    if __name__ == "__main__":
+        asyncio.run(main())
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nats-consumer
+  namespace: nats
+  labels:
+    app: nats-consumer
+spec:
+  # Empezamos en 0 réplicas: KEDA decide.
+  replicas: 0
+  selector:
+    matchLabels:
+      app: nats-consumer
+  template:
+    metadata:
+      labels:
+        app: nats-consumer
+    spec:
+      containers:
+        - name: consumer
+          image: python:3.11-slim
+          command: ["sh", "-c"]
+          args:
+            - |
+              pip install --quiet nats-py==2.6.0
+              exec python /app/consumer.py
+          env:
+            - name: NATS_URL
+              value: "nats://nats.nats.svc.cluster.local:4222"
+            - name: PROCESS_SECONDS
+              value: "2"
+          resources:
+            requests:
+              cpu: 50m
+              memory: 64Mi
+            limits:
+              cpu: 200m
+              memory: 256Mi
+          volumeMounts:
+            - name: code
+              mountPath: /app
+      volumes:
+        - name: code
+          configMap:
+            name: nats-consumer-code

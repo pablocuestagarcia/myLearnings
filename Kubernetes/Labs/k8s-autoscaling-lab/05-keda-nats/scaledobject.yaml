@@ -1,0 +1,34 @@
+# ScaledObject de KEDA usando el scaler nats-jetstream.
+#
+# Cómo funciona:
+#  - KEDA pollea el endpoint de monitorización HTTP de NATS (puerto 8222)
+#    cada 'pollingInterval' segundos.
+#  - Lee 'num_pending' del consumer 'workers' del stream 'ORDERS'.
+#  - Calcula réplicas deseadas = ceil(num_pending / lagThreshold).
+#  - Si num_pending < activationLagThreshold y han pasado 'cooldownPeriod'
+#    segundos sin actividad, escala a 0.
+apiVersion: keda.sh/v1alpha1
+kind: ScaledObject
+metadata:
+  name: nats-consumer-scaler
+  namespace: nats
+spec:
+  scaleTargetRef:
+    name: nats-consumer
+  pollingInterval: 5         # cada 5s consulta NATS
+  cooldownPeriod: 30         # tras 30s sin trabajo → escala a 0
+  minReplicaCount: 0
+  maxReplicaCount: 10
+  triggers:
+    - type: nats-jetstream
+      metadata:
+        # Endpoint HTTP de monitorización (NO el de cliente 4222).
+        natsServerMonitoringEndpoint: "nats.nats.svc.cluster.local:8222"
+        # Cuenta NATS por defecto: $G (global).
+        account: "$G"
+        stream: "ORDERS"
+        consumer: "workers"
+        # Por cada 10 mensajes pendientes, KEDA pide 1 réplica adicional.
+        lagThreshold: "10"
+        # Si los pendientes bajan de 1, se considera "sin trabajo".
+        activationLagThreshold: "1"

@@ -1,0 +1,44 @@
+# App de ejemplo intencionadamente cara en CPU.
+# La imagen registry.k8s.io/hpa-example es la que usa la documentación
+# oficial de Kubernetes para el tutorial de HPA: un servidor PHP que
+# calcula una expresión costosa por cada request.
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cpu-demo
+  labels:
+    app: cpu-demo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: cpu-demo
+  template:
+    metadata:
+      labels:
+        app: cpu-demo
+    spec:
+      containers:
+        - name: cpu-demo
+          image: registry.k8s.io/hpa-example
+          ports:
+            - containerPort: 80
+          # CRÍTICO: sin 'requests' el HPA no puede calcular utilización.
+          resources:
+            requests:
+              cpu: 100m
+              memory: 64Mi
+            limits:
+              cpu: 500m
+              memory: 128Mi
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: cpu-demo
+spec:
+  selector:
+    app: cpu-demo
+  ports:
+    - port: 80
+      targetPort: 80

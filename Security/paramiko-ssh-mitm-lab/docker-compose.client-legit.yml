@@ -1,0 +1,5 @@
+# Override: el cliente cree que sokrates-vm es el servidor legitimo.
+services:
+  client:
+    extra_hosts:
+      - "sokrates-vm:172.28.0.10"

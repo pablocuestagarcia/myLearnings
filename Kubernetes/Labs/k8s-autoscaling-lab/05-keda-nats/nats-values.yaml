@@ -1,0 +1,30 @@
+# Helm values para el chart oficial nats/nats.
+# Activamos JetStream con almacenamiento en disco y dejamos el endpoint
+# de monitorización HTTP en el puerto 8222 (es el que KEDA lee).
+config:
+  cluster:
+    enabled: false   # 1 réplica es suficiente para el lab
+  jetstream:
+    enabled: true
+    fileStore:
+      enabled: true
+      pvc:
+        size: 1Gi
+  monitor:
+    enabled: true
+    port: 8222
+
+# Un único pod nats-0; con kind no merece la pena montar un cluster real.
+statefulSet:
+  replicas: 1
+
+# Recursos modestos para no asfixiar a kind.
+container:
+  merge:
+    resources:
+      requests:
+        cpu: 100m
+        memory: 128Mi
+      limits:
+        cpu: 500m
+        memory: 512Mi

@@ -1,0 +1,30 @@
+# VPA en modo recomendación.
+#
+# Importante: 'updateMode: Off' significa que el VPA NUNCA reescribirá
+# los requests del Deployment. Solo genera recomendaciones que puedes
+# leer con `kubectl describe vpa cpu-demo-vpa`.
+#
+# Este modo es el correcto cuando coexiste con HPA sobre la misma
+# métrica, porque evita el bucle clásico: HPA escala porque ve CPU
+# alta → VPA sube requests porque ve CPU alta → ambos a la vez.
+apiVersion: autoscaling.k8s.io/v1
+kind: VerticalPodAutoscaler
+metadata:
+  name: cpu-demo-vpa
+spec:
+  targetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: cpu-demo
+  updatePolicy:
+    updateMode: "Off"
+  resourcePolicy:
+    containerPolicies:
+      - containerName: '*'
+        minAllowed:
+          cpu: 50m
+          memory: 32Mi
+        maxAllowed:
+          cpu: 1
+          memory: 512Mi
+        controlledResources: ["cpu", "memory"]

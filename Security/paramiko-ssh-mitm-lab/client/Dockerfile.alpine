@@ -1,0 +1,14 @@
+# Alternativa Alpine para client. Usar SOLO si el build con python:3.11-slim
+# (base Debian) tambien falla por el CDN.
+
+FROM python:3.11-alpine
+
+# build deps temporales para compilar cryptography (lo necesita paramiko)
+# + openssh-client (trae ssh-keyscan)
+RUN apk add --no-cache --virtual .build-deps gcc musl-dev libffi-dev openssl-dev \
+ && apk add --no-cache openssh-client bash \
+ && pip install --no-cache-dir paramiko==3.4.0 \
+ && apk del .build-deps
+
+WORKDIR /work
+CMD ["python", "-c", "print('client container ready')"]

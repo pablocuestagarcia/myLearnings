@@ -1,0 +1,19 @@
+# Cluster local con 1 control-plane + 2 workers.
+# Es el mínimo razonable para ver pods distribuyéndose entre nodos
+# cuando HPA y KEDA escalen.
+kind: Cluster
+apiVersion: kind.x-k8s.io/v1alpha4
+name: autoscaling-lab
+nodes:
+  - role: control-plane
+    # Exponemos los puertos típicos de ingress por si quieres
+    # publicar un Service en el futuro.
+    extraPortMappings:
+      - containerPort: 80
+        hostPort: 80
+        protocol: TCP
+      - containerPort: 443
+        hostPort: 443
+        protocol: TCP
+  - role: worker
+  - role: worker

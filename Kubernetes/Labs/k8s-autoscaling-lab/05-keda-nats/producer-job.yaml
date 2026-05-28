@@ -1,0 +1,27 @@
+# Job que publica 500 mensajes en el subject orders.new.
+# Como cada mensaje tarda 2s en procesarse por consumer y aquí los
+# generamos casi instantáneamente, KEDA tendrá que escalar muchas
+# réplicas para drenar la cola.
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: nats-producer
+  namespace: nats
+spec:
+  backoffLimit: 2
+  template:
+    spec:
+      restartPolicy: Never
+      containers:
+        - name: producer
+          image: natsio/nats-box:latest
+          command: ["sh", "-c"]
+          args:
+            - |
+              set -e
+              echo "Publicando 500 mensajes en orders.new ..."
+              for i in $(seq 1 500); do
+                nats --server=nats://nats.nats.svc.cluster.local:4222 \
+                  pub orders.new "order-${i}" >/dev/null
+              done
+              echo "Done."

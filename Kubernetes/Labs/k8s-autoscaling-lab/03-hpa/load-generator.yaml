@@ -1,0 +1,18 @@
+# Pod que martillea el Service cpu-demo en bucle.
+# Ejecútalo y observa cómo el HPA reacciona en 1-2 minutos.
+apiVersion: v1
+kind: Pod
+metadata:
+  name: load-generator
+spec:
+  restartPolicy: Never
+  containers:
+    - name: load
+      image: busybox:1.36
+      command: ["sh", "-c"]
+      args:
+        - |
+          echo "Lanzando carga contra http://cpu-demo ..."
+          while true; do
+            wget -q -O- http://cpu-demo > /dev/null
+          done
